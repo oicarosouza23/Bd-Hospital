@@ -1,0 +1,7 @@
+CREATE TABLE Pacientes (
+    CPF VARCHAR(11) PRIMARY KEY,
+    Nome VARCHAR(100),
+    Endereco VARCHAR(64),
+    Telefone VARCHAR(20),
+    PlanoDeSaude VARCHAR(100)
+);
