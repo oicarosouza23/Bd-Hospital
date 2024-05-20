@@ -1,0 +1,6 @@
+CREATE TABLE Medicos (
+    CRM INT PRIMARY KEY,
+    Nome VARCHAR(50),
+    Telefone VARCHAR(20),
+    Email VARCHAR(60)
+);
