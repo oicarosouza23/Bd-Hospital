@@ -1,0 +1,48 @@
+CREATE TABLE Medicos (
+    CRM INT PRIMARY KEY,
+    Nome VARCHAR(50),
+    Telefone VARCHAR(20),
+    Email VARCHAR(60)
+);
+
+
+CREATE TABLE Pacientes (
+    CPF VARCHAR(11) PRIMARY KEY,
+    Nome VARCHAR(100),
+    Endereco VARCHAR(64),
+    Telefone VARCHAR(20),
+    PlanoDeSaude VARCHAR(100)
+);
+
+
+CREATE TABLE Consultas (
+    ConsultaID INT PRIMARY KEY AUTO_INCREMENT,
+    DataConsulta DATE,
+    TipoConsulta ENUM('Consulta', 'Retorno'),
+    MedicoCRM INT,
+    PacienteCPF VARCHAR(11),
+    FOREIGN KEY (MedicoCRM) REFERENCES Medicos(CRM),
+    FOREIGN KEY (PacienteCPF) REFERENCES Pacientes(CPF)
+);
+
+CREATE TABLE Medicamentos (
+    MedicamentoID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100),
+    Tipo VARCHAR(50),
+    Dosagem VARCHAR(50),
+    Instrucoes VARCHAR(255)
+);
+
+CREATE TABLE Consulta_Medicamentos (
+    ConsultaID INT,
+    MedicamentoID INT,
+    FOREIGN KEY (ConsultaID) REFERENCES Consultas(ConsultaID),
+    FOREIGN KEY (MedicamentoID) REFERENCES Medicamentos(MedicamentoID)
+);
+
+CREATE TABLE Exames (
+    ExameID INT PRIMARY KEY AUTO_INCREMENT,
+    NomeExame VARCHAR(100),
+    ConsultaID INT,
+    FOREIGN KEY (ConsultaID) REFERENCES Consultas(ConsultaID)
+);
